@@ -20,4 +20,6 @@ class Hall(Star_Cinema):
             self._seats[row] = [0] * self._cols
 
     def entry_show(self, id, movie_name, time):
-        show_info = ()
+        show_info = (id, movie_name, time)
+        self._show_list.append(show_info)
+        self._seats[id] = [[0]*self._cols for _ in range(self._rows)]
