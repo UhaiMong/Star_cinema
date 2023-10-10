@@ -46,3 +46,37 @@ class Hall(Star_Cinema):
 
 
 hall = Hall(7, 7, 1)
+hall.entry_show(111, "Apocalypto", "7.00 PM")
+hall.entry_show(112, "X-man", "9.00 PM")
+hall.entry_show(113, "Kiki's Delivery Service", "11.00 PM")
+
+while True:
+    print("1. View All Show")
+    print("2. View Available Seats")
+    print("3. Book a ticket")
+    print("4. Exit")
+    print("Enter Option: ")
+    n = int(input())
+    if n == 1:
+        hall.view_show_list()
+    elif n == 2:
+        try:
+            show_id = int(input("Enter show ID: "))
+            hall.view_available_seats(show_id)
+        except ValueError as err:
+            print(f'{err}')
+    elif n == 3:
+        try:
+            print("Enter Movie ID: ")
+            id = int(input())
+            print("Enter Seat Row: ")
+            seat_row = int(input())
+            print("Enter Seat Col: ")
+            seat_col = int(input())
+            hall.book_seats(id, [(seat_row, seat_col)])
+            print(
+                f'Successfully booked in {seat_row} no row and {seat_col} no col')
+        except ValueError as err:
+            print(f'{err}')
+    else:
+        break
