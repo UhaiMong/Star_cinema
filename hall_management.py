@@ -26,12 +26,13 @@ class Hall(Star_Cinema):
 
     def book_seats(self, show_id, seat_list):
         if show_id not in self._seats:
-            raise ValueError("Invalid show ID")
+            raise ValueError("Invalid show ID.")
         for row, col in seat_list:
             if not (1 <= row <= self._rows) or not (1 <= col <= self._cols):
-                raise ValueError("Invalid seat")
+                raise ValueError("Invalid seat.")
             if self._seats[show_id][row-1][col-1]:
-                raise ValueError("Seat is already booked")
+                raise ValueError(
+                    "Seat is already booked. Please try another seats")
             self._seats[show_id][row-1][col-1] = 1
 
     def view_show_list(self):
@@ -40,7 +41,7 @@ class Hall(Star_Cinema):
 
     def view_available_seats(self, show_id):
         if show_id not in self._seats:
-            raise ValueError("Invalid show ID")
+            raise ValueError("Invalid show ID.")
         for row in self._seats[show_id]:
             print(row)
 
@@ -64,7 +65,7 @@ while True:
             show_id = int(input("Enter show ID: "))
             hall.view_available_seats(show_id)
         except ValueError as err:
-            print(f'{err}')
+            print(f'Sorry: {err} Please Try again')
     elif n == 3:
         try:
             print("Enter Movie ID: ")
@@ -75,8 +76,8 @@ while True:
             seat_col = int(input())
             hall.book_seats(id, [(seat_row, seat_col)])
             print(
-                f'Successfully booked in {seat_row} no row and {seat_col} no col')
+                f'Successfully booked in {seat_row} No row and {seat_col} No column')
         except ValueError as err:
-            print(f'{err}')
+            print(f'Sorry: {err} Please try again')
     else:
         break
