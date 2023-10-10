@@ -43,3 +43,6 @@ class Hall(Star_Cinema):
             raise ValueError("Invalid show ID")
         for row in self._seats[show_id]:
             print(row)
+
+
+hall = Hall(7, 7, 1)
