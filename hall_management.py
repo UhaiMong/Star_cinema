@@ -23,3 +23,13 @@ class Hall(Star_Cinema):
         show_info = (id, movie_name, time)
         self._show_list.append(show_info)
         self._seats[id] = [[0]*self._cols for _ in range(self._rows)]
+
+    def book_seats(self, show_id, seat_list):
+        if show_id not in self._seats:
+            raise ValueError("Invalid show ID")
+        for row, col in seat_list:
+            if not (1 <= row <= self._rows) or not (1 <= col <= self._cols):
+                raise ValueError("Invalid seat")
+            if self._seats[show_id][row-1][col-1]:
+                raise ValueError("Seat is already booked")
+            self._seats[show_id][row-1][col-1] = 1
